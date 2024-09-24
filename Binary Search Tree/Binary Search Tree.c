@@ -124,12 +124,12 @@ struct BinaryTreeNode* searchNode(struct BinaryTreeNode* node, int val)
 {
     if(node == NULL)
     {
-        printf("Not found !!!");
+        printf("Not found !!!\n");
         return NULL;
     }
     if(node->key == val)
     {
-        printf("Value found !!!");
+        printf("Value found !!!\n");
         return node;
     }
     if(node->key > val)
@@ -141,16 +141,6 @@ struct BinaryTreeNode* searchNode(struct BinaryTreeNode* node, int val)
         node->right = searchNode(node->right, val);
     }
 };
-
-void updateNode(struct BinaryTreeNode* root, int oldVal, int newVal)
-{
-    struct BinaryTreeNode* node = searchNode(root, oldVal);
-    if (node != NULL)
-    {
-        node->key = newVal;
-        printf("Value updated from %d to %d\n", oldVal, newVal);
-    }
-}
 
 struct BinaryTreeNode* delete(struct BinaryTreeNode* node, int val)
 {
@@ -196,25 +186,19 @@ struct BinaryTreeNode* delete(struct BinaryTreeNode* node, int val)
     }
     return node;
 }
+void updateNode(struct BinaryTreeNode* root, int oldVal, int newVal)
+{
+    root = delete(root, oldVal);
+    root = insertNode(root, newVal);
+
+    printf("Updated successfully from %d to %d\n", oldVal, newVal);
+}
 
 int main()
     {
         struct BinaryTreeNode * root = NULL;
         int choice, value;
-        /*root = insertNode(root, 44);
-        insertNode(root, 17);
-        insertNode(root, 88);
-        insertNode(root, 65);
-        insertNode(root, 32);
-        insertNode(root, 97);
-        insertNode(root, 28);
-        insertNode(root, 29);
-        insertNode(root, 54);
-        insertNode(root, 82);
-        insertNode(root, 76);
-        insertNode(root, 80);*/
 
-        // Perform in-order traversal
         while(1)
         {
             printf("\nBinary Search Tree Menu:\n");
@@ -306,7 +290,7 @@ int main()
             }
             else if (choice == 12)
             {
-                printf("Thank you\n");
+                printf("Thank you !!!\n");
                 break;
             }
             else
