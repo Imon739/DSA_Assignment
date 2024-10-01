@@ -207,6 +207,17 @@ void updateNode(struct BinaryTreeNode* root, int oldVal, int newVal)
     printf("Updated successfully from %d to %d\n", oldVal, newVal);
 }
 
+int countNode(struct BinaryTreeNode* node)
+{
+    if(node == NULL)
+    {
+        return 0;
+    }
+    int l = countNode(node->left);
+    int r = countNode(node->right);
+    return l + r + 1;
+}
+
 int countLeafNodes(struct BinaryTreeNode* node) {
     if(node == NULL)
     {
@@ -244,7 +255,7 @@ int main()
             printf(" 01.Insert Node\n 02.In-order Traversal\n 03.Pre-order Traversal\n 04.Post-order Traversal\n");
             printf(" 05.Search Node\n 06.Find Minimum\n 07.Find Maximum\n 08.Update Node\n 09.Delete Node\n");
             printf(" 10.Find Second Maximum\n 11.Find Second Minimum\n");
-            printf(" 12.Count Leaf Node\n 13.Height the Tree\n 14.Exit\n\n");
+            printf(" 12.Count Leaf Node\n 13.Height the Tree\n 14.Numbers of Node\n 15.Numbers of Non-Leaf Nodes\n 20.Exit\n\n");
             printf("Enter choice : ");
             scanf("%d", &choice);
 
@@ -332,7 +343,7 @@ int main()
             else if(choice == 12)
             {
                 int leafCount = countLeafNodes(root);
-                printf("Number of leaf nodes: %d\n", leafCount);
+                printf("Number of leaf nodes = %d\n", leafCount);
             }
             else if(choice == 13)
             {
@@ -340,6 +351,18 @@ int main()
                 printf("Height of the tree: %d\n", height);
             }
             else if(choice == 14)
+            {
+                int count = countNode(root);
+                printf("Numbers of Nodes = %d",count);
+            }
+            else if(choice == 15)
+            {
+                int count = countNode(root);
+                int leafCount = countLeafNodes(root);
+                int non_leaf = count - leafCount;
+                printf("Numbers of Non-Leaf Nodes = %d", non_leaf);
+            }
+            else if(choice == 20)
             {
                 printf("Thank you !!!\n");
                 break;
