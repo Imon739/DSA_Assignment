@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 struct BinaryTreeNode
 {
@@ -34,7 +35,11 @@ struct BinaryTreeNode* insertNode(struct BinaryTreeNode* node, int value)
 
 void inOrder(struct BinaryTreeNode* root)
 {
-    if (root != NULL)
+    if (root == NULL)
+    {
+        return NULL;
+    }
+    else
     {
         inOrder(root->left);
         printf(" %d ", root->key);
@@ -44,7 +49,11 @@ void inOrder(struct BinaryTreeNode* root)
 
 void preOrder(struct BinaryTreeNode* root)
 {
-    if(root != NULL)
+    if(root == NULL)
+    {
+        return NULL;
+    }
+    else
     {
         printf(" %d ",root->key);
         preOrder(root->left);
@@ -54,7 +63,11 @@ void preOrder(struct BinaryTreeNode* root)
 
 void postOrder(struct BinaryTreeNode* root)
 {
-    if(root != NULL)
+    if(root == NULL)
+    {
+        return NULL;
+    }
+    else
     {
         postOrder(root->left);
         postOrder(root->right);
@@ -194,6 +207,31 @@ void updateNode(struct BinaryTreeNode* root, int oldVal, int newVal)
     printf("Updated successfully from %d to %d\n", oldVal, newVal);
 }
 
+int countLeafNodes(struct BinaryTreeNode* node) {
+    if(node == NULL)
+    {
+        return NULL;
+    }
+    if(node->left == NULL && node->right == NULL)
+    {
+        return 1;
+    }
+    return countLeafNodes(node->left) + countLeafNodes(node->right);
+}
+
+
+int findHeight(struct BinaryTreeNode* node) {
+    if(node == NULL)
+    {
+        return -1;
+    }
+
+    int leftHeight = findHeight(node->left);
+    int rightHeight = findHeight(node->right);
+
+    return fmax(leftHeight, rightHeight) + 1;
+
+}
 int main()
     {
         struct BinaryTreeNode * root = NULL;
@@ -202,9 +240,12 @@ int main()
         while(1)
         {
             printf("\nBinary Search Tree Menu:\n");
+            printf("__________________________\n");
             printf(" 01.Insert Node\n 02.In-order Traversal\n 03.Pre-order Traversal\n 04.Post-order Traversal\n");
             printf(" 05.Search Node\n 06.Find Minimum\n 07.Find Maximum\n 08.Update Node\n 09.Delete Node\n");
-            printf(" 10.Find Second Maximum\n 11.Find Second Minimum\n 12.Exit\n\n");
+            printf(" 10.Find Second Maximum\n 11.Find Second Minimum\n");
+            printf(" 12.Count Leaf Node\n 13.Height the Tree\n 14.Exit\n\n");
+            printf("Enter choice : ");
             scanf("%d", &choice);
 
             if(choice == 1)
@@ -288,7 +329,17 @@ int main()
                     printf("%d\n", d->key);
                 }
             }
-            else if (choice == 12)
+            else if(choice == 12)
+            {
+                int leafCount = countLeafNodes(root);
+                printf("Number of leaf nodes: %d\n", leafCount);
+            }
+            else if(choice == 13)
+            {
+                int height = findHeight(root);
+                printf("Height of the tree: %d\n", height);
+            }
+            else if(choice == 14)
             {
                 printf("Thank you !!!\n");
                 break;
