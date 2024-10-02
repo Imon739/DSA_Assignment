@@ -19,7 +19,9 @@ int main() {
 
     while (1) {
        err:
-       printf("\n1.Print Entire array (index 0 to len) \n2.Access a specific index\n3.Update the value of a specific index\n4.Linear Search\n5.Insert new value at a specific index \n6.Delete from an index \n7.Delete nth occurrence of a value \n8.Bubble Sort the existing array \n9.Binary Search on the array \n10.find minimuum \n11.find median \n0.EXIT");
+       printf("\n1.Print Entire array (index 0 to len) \n2.Access a specific index\n3.Update the value of a specific index");
+       printf("\n4.Linear Search\n5.Insert new value at a specific index \n6.Delete from an index \n7.Delete nth occurrence of a value ");
+       printf("\n8.Bubble Sort the existing array \n9.Binary Search on the array \n10.find minimuum \n11.find median \n0.EXIT");
        printf("\n\nEnter choice: ");
        scanf("%d", &choice);
 
