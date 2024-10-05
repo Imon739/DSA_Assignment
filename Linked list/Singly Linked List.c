@@ -29,19 +29,19 @@ void insertHead(int num)
     newItem=(struct node *)malloc(sizeof(struct node));
     newItem->value = num;
     newItem->next = NULL;
-    //insert the new node at the head
+    
     newItem->next = head;
     head = newItem;
 }
 
 void insertTail(int num)
 {
-    //create a new node to be inserted
+    
     struct node *newItem;
     newItem=(struct node *)malloc(sizeof(struct node));
     newItem->value = num;
     newItem->next = NULL;
-    // set prev to point to the last node of the list
+    
     struct node *temp = head;
     while (temp->next != NULL)
         temp = temp->next;
@@ -52,12 +52,10 @@ void insertTail(int num)
 
 void insertatPosition(int num, int pos)
 {
-    //create a new node to be inserted
     struct node *newItem;
     newItem=(struct node *)malloc(sizeof(struct node));
     newItem->value = num;
     newItem->next = NULL;
-    // set prev to point to the desired node of the list
     struct node *temp = head;
 
     int size = size_of_list();
@@ -115,8 +113,8 @@ void deleteHead()
         printf("\nThe linked list is currently empty!\n");
         return;
     }
-    temp = head;  // save head pointer
-    head = head->next; //advance head
+    temp = head; 
+    head = head->next; 
     free(temp);
 }
 
